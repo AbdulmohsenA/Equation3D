@@ -12,5 +12,8 @@ Customizing the Scale, Frequency, and the Speed of Animation.
 - **Custom Equation**: Enable custom equation maker, instead of cosine wave.
 - **Export code**: Export the customized code for general use.
 
+#### Usability
+- **Smooth Camera**: Smooth the camera navigation to enhance UX.
+
 #### Performance
 - **Clean up**: Optimize the code.
