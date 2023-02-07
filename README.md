@@ -10,7 +10,7 @@
 - ```x```: the Position variable. For now, there is no real x/y coordinate but this should be enough.
 
 ## Notes
-This doesn't work properly for low-end PCs / Phones.
+This doesn't work properly for low-end PCs / Phones. \
 Some interesting expressions i found:
 - ```tan(x * 5 + t)```
 - ```cos(x + t * x)```
