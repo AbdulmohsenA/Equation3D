@@ -6,7 +6,7 @@
 
 
 ## Variables
-- ``t```: the Time variable, for the time elapsed since last refresh. Main key for animation.
+- ```t```: the Time variable, for the time elapsed since last refresh. Main key for animation.
 - ```x```: the Position variable. For now, there is no real x/y coordinate but this should be enough.
 
 ## Notes
