@@ -2,6 +2,8 @@ import '/style.css'
 import * as THREE from 'three'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import * as dat from 'dat.gui'
+import { translate } from './js/translate'
+
 // Container
 const scene = new THREE.Scene();
 
@@ -28,8 +30,7 @@ let pointColor = new THREE.Color(0xffffff)
 
 let pointMaterial = new THREE.PointsMaterial( {
   size: 0.1,
-  color: pointColor,
-  Image: NaN
+  color: pointColor
 } )
 
 let plane = new THREE.Points(planeGeometry, pointMaterial)
@@ -47,21 +48,30 @@ let MAXHEIGHT = 500
 
 
 
-//#region GUI
-//DEBUGGER
+
 const gui = new dat.GUI()
 
-let controlValues = {
+const controlValues = {
   scale: 10,
-  frequency: 10,
   speed: 1,
   backgroundColor: 0x000000,
-  pointClr: 0xffffff
+  pointClr: 0xffffff,
+  expression: "cos(x * 20 + t)"
 }
+
+let expression = controlValues.expression
+let mathFunction = translate(expression)
+
+//#region GUI
+//DEBUGGER
+
+gui.add(controlValues, "expression").onFinishChange((exp) => {
+  mathFunction = translate(exp)
+}).name("Expression");
+
 
 let controlsGUI = gui.addFolder("Controls")
 
-controlsGUI.add(controlValues, "frequency", 1, 50, 1).name("Frequency")
 controlsGUI.add(controlValues, "scale", 5, 250, 5).name("Scale")
 controlsGUI.add(controlValues, "speed", 1, 50, 0.1).name("Speed")
 
@@ -84,24 +94,27 @@ colorsGUI.addColor(controlValues, "pointClr").listen().onChange((e) => {
 //#endregion
 
 
+
+let x, t, z
+
 // Animation Loop
 function animate() {
   requestAnimationFrame(animate)
 
-  let time = clock.getElapsedTime()
-  time *= controlValues.speed
+  t = clock.getElapsedTime()
+  t *= controlValues.speed
 
   for (let i = 0; i < count; i++) {
-    let expression
-    let x = i / count
+
+    x = i / count
     
     // Point Placement
-    expression = Math.cos(time + x * controlValues.frequency)
-    expression *= controlValues.scale;
+    z = mathFunction(x, t)
+    z *= controlValues.scale;
 
-    if (expression > MAXHEIGHT) {expression = MAXHEIGHT}
+    if (z > MAXHEIGHT) {z = MAXHEIGHT}
 
-    plane.geometry.attributes.position.setZ(i, expression)
+    plane.geometry.attributes.position.setZ(i, z)
   }
 
   planeGeometry.computeVertexNormals()
