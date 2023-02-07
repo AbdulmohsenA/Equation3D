@@ -19,7 +19,7 @@ Some interesting expressions i found:
  
 ## TODO
 #### Functionality
-- ~~**Add Customization**: Customize the 3d View.~~
+- ~~**Add Customization**: Customize the 3D View.~~
 - ~~**Custom Equation**: Enable custom equation maker, instead of cosine wave.~~
 - **Size Customization**: Customize the plane and point sizes.
 - **Export code**: Export the customized code for general use.
