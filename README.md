@@ -13,7 +13,7 @@
 This doesn't work properly for low-end PCs / Phones. \
 Some interesting expressions i found:
 - ```tan(x * 5 + t)```
-- ```cos(x + t * x)```
+- ```tan(x * 2 + t) / cos(t)```
 
 ---
  
